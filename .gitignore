@@ -38,9 +38,22 @@
 *.pdb
 
 *.idea
-Debug/
+nim/Debug/
 nim/.vs/nim/v16/Browse.VC.db
 nim/.vs/nim/v16/Browse.VC.db-shm
 nim/.vs/nim/v16/Browse.VC.db-wal
 nim/.vs/nim/v16/Browse.VC.opendb
 nim/.vs/nim/v16/Browse.VC.db
+
+tictactoe/Debug/
+tictactoe/.vs/nim/v16/Browse.VC.db
+tictactoe/.vs/nim/v16/Browse.VC.db-shm
+tictactoe/.vs/nim/v16/Browse.VC.db-wal
+tictactoe/.vs/nim/v16/Browse.VC.opendb
+tictactoe/.vs/nim/v16/Browse.VC.db
+tictactoe/.vs/slnx.sqlite
+tictactoe/.vs/tictactoe/v16/Browse.VC.db
+tictactoe/.vs/tictactoe/v16/Browse.VC.db-shm
+tictactoe/.vs/tictactoe/v16/Browse.VC.db-wal
+tictactoe/.vs/tictactoe/v16/Browse.VC.opendb
+tictactoe/.vs/tictactoe/v16/ipch/AutoPCH/6a8843f5af850d6a/TICTACTOE.ipch
