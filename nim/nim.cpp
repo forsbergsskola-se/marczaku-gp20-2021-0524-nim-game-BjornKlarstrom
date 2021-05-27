@@ -46,12 +46,50 @@ void ShowMatchesLeft(int MatchesLeft)
     }
 }
 
+void PlayerVsAi(int& MatchesLeft, bool& IsPlayerOnesTurn)
+{
+    ShowMatchesLeft(MatchesLeft);
+
+    while (MatchesLeft > 0)
+    {
+        IsPlayerOnesTurn = !IsPlayerOnesTurn;
+        MatchesLeft -= IsPlayerOnesTurn ? GetPlayerChoice() : GetAiChoice();
+
+        ShowMatchesLeft(MatchesLeft);
+    }
+    std::cout << (IsPlayerOnesTurn ? "\n\n     To bad.. Ai won the game :(" :
+        "\n\n     Concratulations! you won the game!");
+
+    std::cout << "\n\n";
+}
+
+void PlayerVsPlayer(int& MatchesLeft, bool& IsPlayerOnesTurn)
+{
+    ShowMatchesLeft(MatchesLeft);
+
+    while (MatchesLeft > 0)
+    {
+        IsPlayerOnesTurn = !IsPlayerOnesTurn;
+
+        std::cout << (IsPlayerOnesTurn ? "\n     Player One. How many matches do you want to draw? (max 3)" :
+                                         "\n     Player Two. How many matches do you want to draw? (max 3)");
+
+        MatchesLeft -= GetPlayerChoice();
+
+        ShowMatchesLeft(MatchesLeft);
+    }
+
+    std::cout << (IsPlayerOnesTurn ? "\n\n     Player One " : "\n\n     Player Two ") << "WON!!!";
+    std::cout << "\n\n";
+}
+
 int main()
 {
     const int MatchesToStartWith = 24;
     int MatchesLeft = MatchesToStartWith;
     srand(time(NULL));
     bool IsPlayerOnesTurn = rand() % 2;
+    int PlayerMode;
    
 
     std::cout << "\n               -----------------------------\n";
@@ -62,18 +100,33 @@ int main()
     std::cout << "\n     Picking the last one will result in death\n\n";
 
 
-    ShowMatchesLeft(MatchesLeft);
+    std::cout << "\n     How whould you like to play?";
+    std::cout << "\n     Player vs Ai (Enter number 1)";
+    std::cout << "\n     Player vs Player (Enter number 2)";
 
-    while (MatchesLeft > 0)
+    do
     {
-        IsPlayerOnesTurn = !IsPlayerOnesTurn;
-        MatchesLeft -= IsPlayerOnesTurn ? GetPlayerChoice() : GetAiChoice();
+        std::cout << "\n     ";
+        std::cin >> PlayerMode;
 
-        ShowMatchesLeft(MatchesLeft);
-    }
-    std::cout << (IsPlayerOnesTurn ? "\n\n     To bad.. Ai won the game :(" : 
-                                     "\n\n     Concratulations! you won the game!");
+        if (PlayerMode == 1)
+        {
+            PlayerVsAi(MatchesLeft, IsPlayerOnesTurn);
+            return 0;
+        }
+        if (PlayerMode == 2)
+        {
+            PlayerVsPlayer(MatchesLeft, IsPlayerOnesTurn);
+            return 0;
+        }
+        else
+        {
+            std::cout << "\n     Not a valid choice (choose 1 or 2)";
+        }
 
-    std::cout << "\n\n";
+        std::cin.clear();
+        std::cin.ignore();
+    }     while (true);
+        
     return 0;
 }
