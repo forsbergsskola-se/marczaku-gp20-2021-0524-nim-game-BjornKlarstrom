@@ -30,11 +30,12 @@
 *.exe
 *.out
 *.app
-nim/.vs/nim/v16/Browse.VC.db-shm
-nim/.vs/nim/v16/Browse.VC.db
-nim/.vs/nim/v16/Browse.VC.db-wal
-nim/.vs/nim/v16/Browse.VC.opendb
-nim/.vs/nim/v16/Browse.VC.db
-nim/.vs/nim/v16/Browse.VC.db
-*.db
-nim/.vs/nim/v16/Browse.VC.db
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+*.idea
+Debug/

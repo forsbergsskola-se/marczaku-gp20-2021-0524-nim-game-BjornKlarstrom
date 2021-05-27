@@ -27,7 +27,11 @@ int GetPlayerChoice()
 
 int GetAiChoice()
 {
-    return 666;
+    int AiChoice = rand() % 3 + 1;
+
+    std::cout << "\n     Ai draws " << AiChoice << " matches";
+
+    return AiChoice;
 }
 
 
@@ -50,16 +54,15 @@ int main()
     std::cout << "\n     ";
     for (int i = 0; i < MatchesLeft; i++)
     {
-        std::cout << "|";
+        std::cout << "| ";
     }
 
     while (MatchesLeft > 0)
     {
         IsPlayerOnesTurn = !IsPlayerOnesTurn;
         MatchesLeft -= IsPlayerOnesTurn ? GetPlayerChoice() : GetAiChoice();
-        std::cout << MatchesLeft;
 
-        MatchesLeft = 0;
+        std::cout << MatchesLeft;
     }
 
     std::cout << "\n\n";
