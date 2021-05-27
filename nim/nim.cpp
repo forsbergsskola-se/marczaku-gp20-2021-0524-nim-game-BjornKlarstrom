@@ -1,5 +1,6 @@
 #include <iostream>
 #include <ctime>
+#include "nim.h"
 
 int GetPlayerChoice()
 {
@@ -12,6 +13,7 @@ int GetPlayerChoice()
 
         if (Choice >= 1 && Choice <= 3)
         {
+            std::cout << "\n     You draw " << Choice << " matches";
             return Choice;
         }
         else 
@@ -29,11 +31,20 @@ int GetAiChoice()
 {
     int AiChoice = rand() % 3 + 1;
 
-    std::cout << "\n     Ai draws " << AiChoice << " matches";
+    std::cout << "\n\n     Ai draws " << AiChoice << " matches";
 
     return AiChoice;
 }
 
+
+void ShowMatchesLeft(int MatchesLeft)
+{
+    std::cout << "\n     ";
+    for (int i = 0; i < MatchesLeft; i++)
+    {
+        std::cout << "| ";
+    }
+}
 
 int main()
 {
@@ -51,19 +62,17 @@ int main()
     std::cout << "\n     Picking the last one will result in death\n\n";
 
 
-    std::cout << "\n     ";
-    for (int i = 0; i < MatchesLeft; i++)
-    {
-        std::cout << "| ";
-    }
+    ShowMatchesLeft(MatchesLeft);
 
     while (MatchesLeft > 0)
     {
         IsPlayerOnesTurn = !IsPlayerOnesTurn;
         MatchesLeft -= IsPlayerOnesTurn ? GetPlayerChoice() : GetAiChoice();
 
-        std::cout << MatchesLeft;
+        ShowMatchesLeft(MatchesLeft);
     }
+    std::cout << (IsPlayerOnesTurn ? "\n\n     To bad.. Ai won the game :(" : 
+                                     "\n\n     Concratulations! you won the game!");
 
     std::cout << "\n\n";
     return 0;
