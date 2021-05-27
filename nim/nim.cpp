@@ -3,12 +3,31 @@
 
 int GetPlayerChoice()
 {
-    return 1;
+    int Choice;
+    
+    do
+    {
+        std::cout << "\n     How many matches do you want to draw? (max 3): ";
+        std::cin >> Choice;
+
+        if (Choice >= 1 && Choice <= 3)
+        {
+            return Choice;
+        }
+        else 
+        {
+            std::cout << "\n     Try again.. Input not correct";
+        }
+
+        std::cin.clear();
+        std::cin.ignore();
+    }     
+    while (true);
 }
 
 int GetAiChoice()
 {
-    return 2;
+    return 666;
 }
 
 
@@ -16,8 +35,9 @@ int main()
 {
     const int MatchesToStartWith = 24;
     int MatchesLeft = MatchesToStartWith;
-    bool IsPlayerOnesTurn = rand() % 2;
     srand(time(NULL));
+    bool IsPlayerOnesTurn = rand() % 2;
+   
 
     std::cout << "\n               -----------------------------\n";
     std::cout << "                        WELCOME TO\n";
@@ -37,6 +57,9 @@ int main()
     {
         IsPlayerOnesTurn = !IsPlayerOnesTurn;
         MatchesLeft -= IsPlayerOnesTurn ? GetPlayerChoice() : GetAiChoice();
+        std::cout << MatchesLeft;
+
+        MatchesLeft = 0;
     }
 
     std::cout << "\n\n";
