@@ -1,59 +1,70 @@
 #include <iostream>
+#include <string>
+using namespace std;
 
-void DecimalToBinary(int UserNumber)
+string DecimalToBinaryString(int userNumber)
 {
-     const int NumberOfBits = 32;
-     int binaryNum[NumberOfBits];
-
-     std::cout << NumberOfBits;
-
-     unsigned i = 0;
-     while (UserNumber > 0)
-     {
-         binaryNum[i] = UserNumber % 2;
-         UserNumber = UserNumber / 2;
-           i++;
+    const int numberOfBits = 32;
+    string binaryString;
+    
+    for (int i = 0; i < numberOfBits; i++)
+    {
+        if (userNumber % 2 == 0)
+        {
+            binaryString.append("0");
         }
-     for (; i < NumberOfBits; i++)
-     {
-            binaryNum[i] = 0;
-     }
+        else
+        {
+            binaryString.append("1");
+        }
 
-     std::cout << "0b";
-     for (int j = NumberOfBits - 1; j >= 0; j--)
-          std::cout << binaryNum[j];
+       userNumber = userNumber / 2;
+    }
+
+    string reversed = string(binaryString.rbegin(), binaryString.rend());
+    reversed.insert(0, "0b");
+    return reversed;
+}
+
+string GetWithBinaryOperator(int userNumber)
+{
+    const int numberOfBits = 32;
+    string binaryString;
+
+    for (int i = numberOfBits - 1; i >= 0; i--) 
+    {
+        int b = userNumber >> i;
+        if (b & 1)
+        {
+            binaryString.append("1");
+        }
+        else
+        {
+            binaryString.append("0");
+        }
+    }
+    binaryString.insert(0, "0b");
+    return binaryString;
 }
 
 int main()
 {
-    std::cout << "Hello Binary Converter\n\n";
-
-
-    /*int i = 0, j = 0;
-
-    if (++i || ++j)
-    {
-        std::cout << "YES" << std::endl;
-    }
-
-    std::cout << i << " " << j;
-
-
-
-    std::cout << "\n\n";
-    return 0;*/
-
-
+    cout << "Hello Binary Converter\n\n";
 
     int UserNumber;
-    std::cout << "\n\nInput a number (positive): ";
-    std::cin >> UserNumber;
-    std::cin.clear();
-    std::cin.ignore();
+    cout << "\n\nInput a number (positive): ";
+    cin >> UserNumber;
+    cin.clear();
+    cin.ignore();
 
-    DecimalToBinary(UserNumber);
+    string binary1 = DecimalToBinaryString(UserNumber);
+    cout << binary1;
+    cout << endl << endl;
 
+    string binary2 = GetWithBinaryOperator(UserNumber);
+    cout << binary2;
+    cout << endl << endl;
 
-    std::cout << std::endl << std::endl;
+    cout << endl << endl;
     return 0;
 }
