@@ -1,4 +1,5 @@
 #include <iostream>
+using namespace std;
 
 bool IsValid(int Input)
 {
@@ -15,7 +16,7 @@ void HandleInputOne(int* PlayerOne, int* PlayerTwo)
     while (true) 
     {
         int Input;
-        std::cin >> Input;
+        cin >> Input;
 
         if (IsPlaceable(PlayerOne, PlayerTwo, Input))
         {
@@ -23,7 +24,7 @@ void HandleInputOne(int* PlayerOne, int* PlayerTwo)
             break;
         }
 
-        std::cout << "\nTry again.. (0 - 8)";
+        cout << "\nTry again.. (0 - 8)";
     }
 }
 
@@ -32,15 +33,14 @@ void HandleInputTwo(int* PlayerOne, int* PlayerTwo)
     while (true)
     {
         int Input;
-        std::cin >> Input;
+        cin >> Input;
 
         if (IsPlaceable(PlayerOne, PlayerTwo, Input))
         {
             PlayerTwo[Input] = 2;
             break;
         }
-
-        std::cout << "\nTry again.. (0 - 8)";
+        cout << "\nTry again.. (0 - 8)";
     }
 }
 
@@ -62,24 +62,24 @@ void ShowGrid(int* PlayerOne, int* PlayerTwo)
     {
         if (ShowPlayerOne(PlayerOne, i))
         {
-            std::cout << " " << "x" << " ";
+            cout << " " << "x" << " ";
         }
 
         else if (ShowPlayerTwo(PlayerTwo, i))
         {
-            std::cout << " " << "o" << " ";
+            cout << " " << "o" << " ";
         }
 
         else
-            std::cout << " " << i << " ";
+            cout << " " << i << " ";
 
         if (i == 2 || i == 5 || i == 8)
         {
-            std::cout << "" << std::endl;
+            cout << "" << std::endl;
             continue;
         }
 
-        std::cout << "|";
+        cout << "|";
     }
 }
 
@@ -145,25 +145,25 @@ int main()
 
     while (true)
     {
-        std::cout << "\nPlayer One! Place your pick (0 - 8)";
+        cout << "\nPlayer One! Place your pick (0 - 8)";
         HandleInputOne(PlayerOne, PlayerTwo);
         ShowGrid(PlayerOne, PlayerTwo);
         if (IsWinner(PlayerOne)) 
         {
-            std::cout << "\nPlayer One Won!";
+            cout << "\nPlayer One Won!";
             break;
         }
 
-        std::cout << "\nPlayer Two! Place your pick (0 - 8)";
+        cout << "\nPlayer Two! Place your pick (0 - 8)";
         HandleInputTwo(PlayerOne, PlayerTwo);
         ShowGrid(PlayerOne, PlayerTwo);
         if (IsWinner(PlayerTwo))
         {
-            std::cout << "\nPlayer Two Won!";
+            cout << "\nPlayer Two Won!";
             break;
         }       
     }
 
-    std::cout << std::endl << std::endl;
+    cout << endl << endl;
     return 0;
 }
